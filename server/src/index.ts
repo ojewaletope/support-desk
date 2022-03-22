@@ -2,14 +2,18 @@ import express, { Express, Request, Response } from "express";
 import helmet from "helmet";
 import dotenv from "dotenv";
 
-import * as userRoutes from "./routes/userRoutes";
 import routes from "./routes";
 import { errorHandler } from "./middleware/errorHandler";
+import { connectDB } from "./config/db";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
+
 const app: Express = express();
+
+// connect db
+connectDB();
 
 app.use(helmet());
 app.use(express.json());
